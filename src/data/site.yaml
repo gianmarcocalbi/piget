@@ -1,21 +1,68 @@
-author: Pidget
+# yaml-language-server: $schema=https://www.schemastore.org/any.json
+
+# Display name for the project author / artist shown throughout the site.
+author: Piget
+
+# Album or project title used in the home page hero and other shared metadata.
 albumTitle: The Rise and Fall of a Ghost
+
+# Background artwork shown on the homepage. Path is relative to the public directory.
 homepageBackground: images/home/ghost-album-background.svg
+
+# Intro copy shown in the homepage hero.
+homepageIntro: Songs, lyrics, and notes arranged as a focused digital release. The homepage is driven directly by the song entries, so the catalog stays in sync with the content.
+
+# Content used by the About page.
 about:
-  avatar: images/about/pidget-avatar.svg
+  # Avatar or profile artwork displayed in the About page header.
+  avatar: images/about/piget-avatar.svg
+
+  # Paragraphs describing the project itself.
+  # Each list item becomes a separate paragraph in the project section of the About page.
   project:
-    - Pidget is a dark, static listening archive for songs, notes, and the visual world around an album.
+    - Piget is a dark, static listening archive for songs, notes, and the visual world around an album.
     - The site is built to make each track feel like a destination instead of just a list item.
+
+  # Paragraphs describing the author identity behind the project.
+  # Each entry is rendered as separate paragraph in the author section of the About page.
   author:
-    - Pidget is the authorial frame for this project, collecting songs, lyrics, and explanations in one place.
+    - Piget is the authorial frame for this project, collecting songs, lyrics, and explanations in one place.
     - The structure is intentionally simple so new releases can be added by dropping in a new song file and artwork.
+
+  # Contact entries shown in the About page.
+  # Each item becomes a link card with a label and displayed value.
+  contact:
+    - label: Email
+      value: hello@pigetmusic.com
+      href: mailto:hello@pigetmusic.com
+    - label: Instagram
+      value: '@pigetmusic'
+      href: https://instagram.com/pigetmusic
+
+# Global streaming / platform links shown across the site.
+# Add, remove, or reorder entries here to control which platforms appear.
 links:
+  # Internal stable identifier for the platform.
+  # This is useful for keys, styling hooks, or future platform-specific logic.
   - id: spotify
+
+    # Human-readable label shown in the UI.
     title: Spotify
-    icon: spotify
+
+    # Iconify icon name used by the icon component.
+    icon: simple-icons:spotify
+
+    # Destination URL for this platform.
+    url: https://open.spotify.com/album/placeholder
+
+  # Apple Music platform link.
   - id: appleMusic
     title: Apple Music
-    icon: apple-music
+    icon: simple-icons:applemusic
+    url: https://music.apple.com/us/album/placeholder
+
+  # Amazon Music platform link.
   - id: amazonMusic
     title: Amazon Music
-    icon: amazon-music
+    icon: simple-icons:amazonmusic
+    url: https://music.amazon.com/albums/placeholder

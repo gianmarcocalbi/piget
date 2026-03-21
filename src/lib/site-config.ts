@@ -8,18 +8,30 @@ export interface PlatformDefinition {
   icon: string;
 }
 
+export interface PlatformLink extends PlatformDefinition {
+  url: string;
+}
+
+export interface ContactLink {
+  label: string;
+  value: string;
+  href: string;
+}
+
 interface SiteAboutConfig {
   avatar: string;
   project: string[];
   author: string[];
+  contact: ContactLink[];
 }
 
 export interface SiteConfig {
   author: string;
   albumTitle: string;
   homepageBackground: string;
+  homepageIntro: string;
   about: SiteAboutConfig;
-  links: PlatformDefinition[];
+  links: PlatformLink[];
 }
 
 export interface ResolvedPlatformLink extends PlatformDefinition {
@@ -53,14 +65,14 @@ function readStringArray(value: unknown, label: string): string[] {
   return value.map((entry, index) => readString(entry, `${label}[${index}]`));
 }
 
-function parsePlatformDefinitions(value: unknown): PlatformDefinition[] {
+function parsePlatformDefinitions(value: unknown): PlatformLink[] {
   if (!Array.isArray(value)) {
     throw new Error('Invalid site config: links must be a list.');
   }
 
   const entries = value as unknown[];
 
-  return entries.map<PlatformDefinition>((entry, index) => {
+  return entries.map<PlatformLink>((entry, index) => {
     if (!isRecord(entry)) {
       throw new Error(
         `Invalid site config: links[${index}] must be an object.`,
@@ -71,6 +83,29 @@ function parsePlatformDefinitions(value: unknown): PlatformDefinition[] {
       id: readString(entry.id, `links[${index}].id`),
       title: readString(entry.title, `links[${index}].title`),
       icon: readString(entry.icon, `links[${index}].icon`),
+      url: readString(entry.url, `links[${index}].url`),
+    };
+  });
+}
+
+function parseContactLinks(value: unknown): ContactLink[] {
+  if (!Array.isArray(value)) {
+    throw new Error('Invalid site config: about.contact must be a list.');
+  }
+
+  const entries = value as unknown[];
+
+  return entries.map<ContactLink>((entry, index) => {
+    if (!isRecord(entry)) {
+      throw new Error(
+        `Invalid site config: about.contact[${index}] must be an object.`,
+      );
+    }
+
+    return {
+      label: readString(entry.label, `about.contact[${index}].label`),
+      value: readString(entry.value, `about.contact[${index}].value`),
+      href: readString(entry.href, `about.contact[${index}].href`),
     };
   });
 }
@@ -91,10 +126,12 @@ function parseSiteConfig(value: unknown): SiteConfig {
       value.homepageBackground,
       'homepageBackground',
     ),
+    homepageIntro: readString(value.homepageIntro, 'homepageIntro'),
     about: {
       avatar: readString(value.about.avatar, 'about.avatar'),
       project: readStringArray(value.about.project, 'about.project'),
       author: readStringArray(value.about.author, 'about.author'),
+      contact: parseContactLinks(value.about.contact),
     },
     links: parsePlatformDefinitions(value.links),
   };

@@ -1,23 +1,17 @@
 ---
+import { Icon } from 'astro-icon/components';
+
 interface Props {
   icon: string;
 }
 
 const { icon } = Astro.props;
-
-const iconLabelMap: Record<string, string> = {
-  spotify: 'SP',
-  'apple-music': 'AM',
-  'amazon-music': 'AZ',
-  link: 'LN',
-};
-
-const label = iconLabelMap[icon] ?? icon.slice(0, 2).toUpperCase();
+const iconName = icon.trim().length > 0 ? icon : 'lucide:link';
 ---
 
 <span
   aria-hidden="true"
-  class="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-[0.7rem] font-semibold uppercase tracking-[0.22em] text-cyan-50"
+  class="inline-flex h-10 w-10 items-center justify-center rounded-2xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-50"
 >
-  {label}
+  <Icon name={iconName} class="h-5 w-5" />
 </span>
