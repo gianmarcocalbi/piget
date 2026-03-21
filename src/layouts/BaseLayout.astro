@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+
+import { withBasePath } from '../lib/paths';
+import { siteConfig } from '../lib/site-config';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = `${siteConfig.author} | ${siteConfig.albumTitle}`,
+  description = `A static site for ${siteConfig.author} and the album ${siteConfig.albumTitle}.`,
+} = Astro.props;
+
+const faviconHref = withBasePath('favicon.svg');
+const homeHref = withBasePath('/');
+const aboutHref = withBasePath('/about/');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#050816" />
+    <link rel="icon" type="image/svg+xml" href={faviconHref} />
+    <title>{title}</title>
+  </head>
+  <body>
+    <div class="min-h-screen">
+      <header
+        class="sticky top-0 z-50 border-b border-white/10 bg-slate-950/72 backdrop-blur-2xl"
+      >
+        <div
+          class="mx-auto flex max-w-6xl flex-col gap-4 px-6 py-4 sm:px-8 md:flex-row md:items-center md:justify-between"
+        >
+          <a href={homeHref} class="space-y-1">
+            <p
+              class="text-[0.65rem] font-medium uppercase tracking-[0.34em] text-cyan-300/70"
+            >
+              {siteConfig.author}
+            </p>
+            <p
+              class="text-xl font-medium tracking-[-0.04em] text-slate-50 sm:text-2xl"
+            >
+              {siteConfig.albumTitle}
+            </p>
+          </a>
+
+          <nav
+            class="mx-auto flex w-fit gap-2 self-center rounded-full border border-white/10 bg-white/5 p-1 text-[0.68rem] uppercase tracking-[0.28em] text-slate-300 sm:text-xs md:mx-0 md:self-auto"
+          >
+            <a
+              class="rounded-full px-4 py-2 transition hover:bg-white/8 hover:text-white"
+              href={homeHref}>Home</a
+            >
+            <a
+              class="rounded-full px-4 py-2 transition hover:bg-white/8 hover:text-white"
+              href={aboutHref}>About</a
+            >
+          </nav>
+        </div>
+      </header>
+
+      <main>
+        <slot />
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" fill="none">
+  <rect width="800" height="800" rx="72" fill="#14110f" />
+  <circle cx="400" cy="288" r="164" fill="#292524" />
+  <path d="M164 668C164 536 271 428 403 428C534 428 640 536 640 668V732H164V668Z" fill="#292524" />
+  <circle cx="468" cy="258" r="96" fill="#f59e0b" fill-opacity="0.22" />
+  <path d="M294 257C325 212 383 182 442 182C524 182 588 236 588 315C588 398 510 455 426 455C368 455 314 429 281 385C338 390 384 369 404 336C431 289 400 229 294 257Z" fill="#f5f5f4" fill-opacity="0.12" />
+  <text x="400" y="736" fill="#e7e5e4" font-family="Georgia, serif" font-size="74" text-anchor="middle">Pidget</text>
+</svg>

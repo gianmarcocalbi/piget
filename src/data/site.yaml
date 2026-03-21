@@ -1,0 +1,21 @@
+author: Pidget
+albumTitle: The Rise and Fall of a Ghost
+homepageBackground: images/home/ghost-album-background.svg
+about:
+  avatar: images/about/pidget-avatar.svg
+  project:
+    - Pidget is a dark, static listening archive for songs, notes, and the visual world around an album.
+    - The site is built to make each track feel like a destination instead of just a list item.
+  author:
+    - Pidget is the authorial frame for this project, collecting songs, lyrics, and explanations in one place.
+    - The structure is intentionally simple so new releases can be added by dropping in a new song file and artwork.
+links:
+  - id: spotify
+    title: Spotify
+    icon: spotify
+  - id: appleMusic
+    title: Apple Music
+    icon: apple-music
+  - id: amazonMusic
+    title: Amazon Music
+    icon: amazon-music

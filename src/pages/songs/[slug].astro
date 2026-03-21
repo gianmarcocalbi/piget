@@ -1,0 +1,33 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+
+import SongLayout from '../../layouts/SongLayout.astro';
+import { resolveSongPlatforms } from '../../lib/site-config';
+
+export async function getStaticPaths() {
+  const songs = await getCollection('songs');
+
+  return songs.map((song) => ({
+    params: { slug: song.slug },
+    props: { song },
+  }));
+}
+
+interface Props {
+  song: CollectionEntry<'songs'>;
+}
+
+const { song } = Astro.props;
+const { Content } = await render(song);
+const streamingLinks = resolveSongPlatforms(song.data.platformUrls);
+---
+
+<SongLayout
+  title={song.data.title}
+  summary={song.data.summary}
+  heroImage={song.data.heroImage}
+  lyrics={song.data.lyrics}
+  streamingLinks={streamingLinks}
+>
+  <Content />
+</SongLayout>

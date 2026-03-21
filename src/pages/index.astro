@@ -1,0 +1,122 @@
+---
+import { getCollection } from 'astro:content';
+
+import SongCard from '../components/SongCard.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBasePath } from '../lib/paths';
+import { siteConfig } from '../lib/site-config';
+
+const songs = (await getCollection('songs')).sort(
+  (left, right) => left.data.order - right.data.order,
+);
+
+const heroBackground = `linear-gradient(180deg, rgba(5, 8, 22, 0.18) 0%, rgba(5, 8, 22, 0.94) 100%), url(${withBasePath(siteConfig.homepageBackground)})`;
+---
+
+<BaseLayout
+  title={`${siteConfig.author} | ${siteConfig.albumTitle}`}
+  description={`Songs, lyrics, and notes from ${siteConfig.albumTitle}.`}
+>
+  <section class="relative isolate overflow-hidden border-b border-white/10">
+    <div
+      class="absolute inset-0 -z-10 bg-cover bg-center"
+      style={`background-image: ${heroBackground};`}
+    >
+    </div>
+    <div
+      class="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top,rgba(34,211,238,0.22),transparent_34%)]"
+    >
+    </div>
+    <div
+      class="absolute inset-x-0 bottom-0 -z-10 h-40 bg-gradient-to-t from-slate-950 to-transparent"
+    >
+    </div>
+
+    <div
+      class="mx-auto grid min-h-[36rem] max-w-6xl gap-10 px-6 py-16 sm:px-8 lg:min-h-[42rem] lg:grid-cols-[minmax(0,1.25fr)_20rem] lg:items-end lg:py-24"
+    >
+      <div class="space-y-5">
+        <div
+          class="inline-flex w-fit items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2 text-[0.68rem] font-medium uppercase tracking-[0.28em] text-cyan-100"
+        >
+          <span class="h-2 w-2 rounded-full bg-cyan-300"></span>
+          New album archive
+        </div>
+        <h1
+          class="max-w-4xl text-5xl font-medium leading-[0.88] tracking-[-0.06em] text-balance text-slate-50 sm:text-7xl lg:text-[6.5rem]"
+        >
+          {siteConfig.author}
+        </h1>
+        <div class="space-y-4">
+          <p
+            class="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-cyan-200/72"
+          >
+            Album
+          </p>
+          <p
+            class="max-w-3xl text-3xl leading-tight tracking-[-0.04em] text-slate-100 sm:text-5xl"
+          >
+            {siteConfig.albumTitle}
+          </p>
+        </div>
+
+        <p class="max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+          Songs, lyrics, and notes arranged as a focused digital release. The
+          homepage is driven directly by the song entries, so the catalog stays
+          in sync with the content.
+        </p>
+      </div>
+
+      <div class="grid gap-4 self-end lg:justify-self-end">
+        <div
+          class="rounded-[1.75rem] border border-white/10 bg-slate-950/70 p-5 shadow-[0_24px_80px_rgba(2,6,23,0.45)] backdrop-blur-xl"
+        >
+          <p
+            class="text-[0.68rem] font-medium uppercase tracking-[0.3em] text-cyan-200/70"
+          >
+            Structure
+          </p>
+          <p class="mt-3 text-lg font-medium tracking-[-0.03em] text-slate-50">
+            Shared song pages, YAML config, content-driven grid.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-6 py-12 sm:px-8 lg:py-16">
+    <div
+      class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"
+    >
+      <div class="space-y-2">
+        <p
+          class="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-cyan-200/70"
+        >
+          Songs
+        </p>
+        <h2
+          class="text-3xl font-medium tracking-[-0.04em] text-slate-50 sm:text-4xl"
+        >
+          Track pages
+        </h2>
+      </div>
+      <p class="max-w-xl text-sm leading-6 text-slate-400 sm:text-base">
+        Add a new markdown file under the songs content collection and it will
+        be listed here without changing the homepage.
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {
+        songs.map((song) => (
+          <SongCard
+            title={song.data.title}
+            summary={song.data.summary}
+            image={song.data.heroImage}
+            href={`/songs/${song.slug}/`}
+          />
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

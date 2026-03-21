@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { withBasePath } from '../lib/paths';
+import { siteConfig } from '../lib/site-config';
+
+const avatarSrc = withBasePath(siteConfig.about.avatar);
+---
+
+<BaseLayout
+  title={`About | ${siteConfig.author}`}
+  description={`About ${siteConfig.author} and the project.`}
+>
+  <section
+    class="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:px-8 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:py-20"
+  >
+    <div class="space-y-6">
+      <p
+        class="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-cyan-200/70"
+      >
+        About
+      </p>
+      <h1
+        class="text-5xl font-medium leading-[0.92] tracking-[-0.05em] text-slate-50 sm:text-6xl"
+      >
+        The project behind the songs
+      </h1>
+      <img
+        src={avatarSrc}
+        alt={`Portrait for ${siteConfig.author}`}
+        class="aspect-square w-full max-w-sm rounded-[1.75rem] border border-white/10 object-cover shadow-[0_24px_80px_rgba(2,6,23,0.4)]"
+        loading="lazy"
+      />
+    </div>
+
+    <div class="space-y-10">
+      <section
+        class="rounded-[1.75rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_24px_70px_rgba(2,6,23,0.34)] backdrop-blur-xl sm:p-8"
+      >
+        <p
+          class="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-cyan-200/70"
+        >
+          Project
+        </p>
+        <div class="song-prose mt-5 space-y-4">
+          {siteConfig.about.project.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+
+      <section
+        class="rounded-[1.75rem] border border-white/10 bg-slate-950/70 p-6 shadow-[0_24px_70px_rgba(2,6,23,0.34)] backdrop-blur-xl sm:p-8"
+      >
+        <p
+          class="text-[0.68rem] font-medium uppercase tracking-[0.32em] text-cyan-200/70"
+        >
+          Author
+        </p>
+        <div class="song-prose mt-5 space-y-4">
+          {siteConfig.about.author.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

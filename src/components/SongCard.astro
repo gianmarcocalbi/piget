@@ -1,0 +1,43 @@
+---
+import { withBasePath } from '../lib/paths';
+
+interface Props {
+  title: string;
+  summary: string;
+  image: string;
+  href: string;
+}
+
+const { title, summary, image, href } = Astro.props;
+
+const tileHref = withBasePath(href);
+const backgroundImage = `linear-gradient(180deg, rgba(5, 8, 22, 0.14) 0%, rgba(5, 8, 22, 0.88) 100%), url(${withBasePath(image)})`;
+---
+
+<a
+  href={tileHref}
+  class="group relative flex min-h-72 overflow-hidden rounded-[1.75rem] border border-white/10 bg-slate-950/80 p-6 shadow-[0_24px_80px_rgba(2,6,23,0.32)] transition duration-300 hover:-translate-y-1.5 hover:border-cyan-300/30"
+>
+  <div
+    class="absolute inset-0 bg-cover bg-center transition duration-500 group-hover:scale-[1.03]"
+    style={`background-image: ${backgroundImage};`}
+  >
+  </div>
+  <div
+    class="absolute inset-0 bg-[linear-gradient(135deg,rgba(34,211,238,0.14),transparent_40%,rgba(59,130,246,0.12))] opacity-70"
+  >
+  </div>
+  <div class="relative mt-auto max-w-sm space-y-3">
+    <p
+      class="text-[0.68rem] font-medium uppercase tracking-[0.3em] text-cyan-200/72"
+    >
+      Song page
+    </p>
+    <h2
+      class="text-3xl font-medium leading-tight tracking-[-0.04em] text-slate-50"
+    >
+      {title}
+    </h2>
+    <p class="text-sm leading-6 text-slate-300">{summary}</p>
+  </div>
+</a>
