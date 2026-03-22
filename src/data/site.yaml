@@ -66,3 +66,21 @@ links:
     title: Amazon Music
     icon: simple-icons:amazonmusic
     url: https://music.amazon.com/albums/placeholder
+
+  # TIDAL platform link.
+  - id: tidal
+    title: TIDAL
+    icon: simple-icons:tidal
+    url: https://tidal.com/browse/album/placeholder
+
+  # YouTube Music platform link.
+  - id: youtubeMusic
+    title: YouTube Music
+    icon: simple-icons:youtubemusic
+    url: https://music.youtube.com/playlist?list=placeholder
+
+  # YouTube video link.
+  - id: youtube
+    title: YouTube
+    icon: simple-icons:youtube
+    url: https://youtube.com/playlist?list=placeholder

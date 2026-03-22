@@ -5,7 +5,11 @@ order: 2
 heroImage: images/songs/static-between-stations.svg
 platformUrls:
   spotify: https://spotify.com
+  appleMusic: https://music.apple.com
   amazonMusic: https://music.amazon.com
+  tidal: https://tidal.com
+  youtubeMusic: https://music.youtube.com
+  youtube: https://youtube.com
 lyrics: |
   Every promise crackles in the dashboard light,
   somewhere between the city and the snow.

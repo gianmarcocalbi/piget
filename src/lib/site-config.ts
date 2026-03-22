@@ -156,7 +156,7 @@ export function resolveSongPlatforms(
     .map(([id, url]) => ({
       id,
       title: id,
-      icon: 'link',
+      icon: 'lucide:link',
       url,
     }));
 

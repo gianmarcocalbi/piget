@@ -6,6 +6,10 @@ heroImage: images/songs/ghost-on-the-stairs.svg
 platformUrls:
   spotify: https://spotify.com
   appleMusic: https://music.apple.com
+  amazonMusic: https://music.amazon.com
+  tidal: https://tidal.com
+  youtubeMusic: https://music.youtube.com
+  youtube: https://youtube.com
 lyrics: |
   Footsteps bloom where the hallway bends,
   soft as dust and twice as patient.

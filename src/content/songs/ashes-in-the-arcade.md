@@ -7,6 +7,9 @@ platformUrls:
   spotify: https://spotify.com
   appleMusic: https://music.apple.com
   amazonMusic: https://music.amazon.com
+  tidal: https://tidal.com
+  youtubeMusic: https://music.youtube.com
+  youtube: https://youtube.com
 lyrics: |
   Token sparks and fluorescent weather,
   all the cabinets hum your name.
